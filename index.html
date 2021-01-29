@@ -1,0 +1,63 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+    <div>
+      <input type="text"id='email' placeholder="Email">
+    </div>
+
+    <div>
+      <input type="text" id='card_holder' placeholder='Card Holder'>
+    </div>
+
+    <div id="success"></div>
+
+    <div id="inline-widget"></div>
+    <script src="https://test.tap2pay.me//inline_widget/v1.js">
+
+    </script>
+
+    <script>
+      var t2pBasketWidget = new T2P.InlineWidget("#inline-widget", {id: "6i2Mc2su"});
+    </script>
+
+    <button id="pay">Pay</button>
+
+    <script>
+      let iframeName
+      let email
+      let cardHolder
+      let frame
+      let data
+      let success
+      let button = document.getElementById('pay')
+      button.addEventListener('click', (e) => {
+        email = document.getElementById('email')
+        cardHolder = document.getElementById('card_holder')
+        data = {
+          email: email.value,
+          card_holder: cardHolder.value
+        }
+        frame = window.frames.t2p_inline_widget
+        frame.postMessage(JSON.stringify(data), '*')
+      })
+
+      messageHandler = function(event) {
+        console.log('EVENT!')
+        let data = event.data
+        if(data.action == 'resizeIframe') {
+          iframeName = document.getElementsByName('t2p_inline_widget')[0]
+          iframeName.setAttribute('width', data.data.width)
+          iframeName.setAttribute('height', data.data.height)
+        } else if(data.action == 'complete') {
+          console.log('Success')
+          success = document.getElementById('success')
+          success.innerText = 'Success!!'
+        }
+      }
+
+      window.addEventListener("message", messageHandler)
+    </script>
+  </body>
+</html>
