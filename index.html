@@ -13,8 +13,8 @@
 
     <div id="success"></div>
 
-    <div id="inline-widget"></div>
-    <script src="https://test.tap2pay.me//inline_widget/v1.js">
+    <div><div id="inline-widget"></div></div>
+    <script src="https://test.tap2pay.me/inline_widget/v1.js">
 
     </script>
 
@@ -48,7 +48,6 @@
         let data = event.data
         if(data.action == 'resizeIframe') {
           iframeName = document.getElementsByName('t2p_inline_widget')[0]
-          iframeName.setAttribute('width', data.data.width)
           iframeName.setAttribute('height', data.data.height)
         } else if(data.action == 'complete') {
           console.log('Success')
