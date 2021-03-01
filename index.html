@@ -12,13 +12,13 @@
 
     <div id="success"></div>
 
-    <div><div id="inline-widget"></div></div>
+    <div id="inline-widget"></div>
     <script src="https://test.tap2pay.me/inline_widget/v1.js">
 
     </script>
 
     <script>
-      var t2pBasketWidget = new T2P.InlineWidget("#inline-widget", {id: "JMX1pYYc"});
+      var t2pInlineWidget = new T2P.InlineWidget("#inline-widget", {id: "oCwxeJ2r"});
     </script>
 
     <button id="pay">Pay</button>
@@ -30,13 +30,36 @@
       let frame
       let data
       let success
+      let iframe2 = document.getElementsByName("t2p_inline_widget")[0]
+      iframe2.onload = function() {
+        data = {
+          type: 'styles',
+          params: `
+            body {
+              background-color: blue;
+              font-size: 15px;
+            }
+            .inline_gateway {
+              border: 4px solid red;
+              border-radius: 10px;
+              background-color: pink;
+            }
+          `
+        }
+        frame = window.frames.t2p_inline_widget
+        frame.postMessage(JSON.stringify(data), '*')
+      }
+
       let button = document.getElementById('pay')
       button.addEventListener('click', (e) => {
         email = document.getElementById('email')
         cardHolder = document.getElementById('card_holder')
         data = {
-          email: email.value,
-          card_holder: cardHolder.value
+          type: 'card_fields',
+          params: {
+            email: email.value,
+            card_holder: cardHolder.value
+          }
         }
         frame = window.frames.t2p_inline_widget
         frame.postMessage(JSON.stringify(data), '*')
