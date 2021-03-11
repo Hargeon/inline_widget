@@ -2,32 +2,25 @@
   <head>
   </head>
   <body>
-    <div>
-  <input class="t2p-inline-widget-input" type="text"id='email' placeholder="Email">
-</div>
-<div>
-  <input class="t2p-inline-widget-input" type="text" id='card_holder' placeholder='Card Holder'>
-</div>
-<div id="inline-widget"></div>
-<script src="https://secure.tap2pay.me/inline_checkout.v1.js"></script>
-<script>
-  var t2pInlineWidget = new T2P.CheckoutInline("#inline-widget", {merchant_id: "zKnKuPd3"});
-  t2pInlineWidget.openProduct('HTMGtZKg')
-</script>
-<button class="t2p-inline-widget-pay" id="pay">Pay</button>
-<script>
-  let button = document.getElementById('pay')
-  button.addEventListener('click', (e) => {
-    let data = {
-      type: 'card_fields',
-      params: {
-        email: document.getElementById('email').value,
-        card_holder: document.getElementById('card_holder').value
-      }
-    }
-    let frame = window.frames.t2p_inline_widget
-    frame.postMessage(JSON.stringify(data), '*')
-  })
-</script>
-  </body>
+    <script src='https://test.tap2pay.me/checkout.v1.js'></script>
+    <script>
+      var t2pHandler = new T2P.Checkout({merchant_id: "5SzMLfBV"});
+      var onClick = function() {
+        t2pHandler.open({
+          amount_currency: 'USD',
+          amount_value: 100000, // in cents
+          items: [
+            {
+              name: 'iPhone 7',
+              price_currency: 'USD',
+              price_value: 100000,
+              image_url: 'http://cdn2.gsmarena.com/vv/pics/apple/apple-iphone-7-1.jpg'
+            }
+          ]
+        }, { enabledChats: [] });
+        return false;
+      };
+    </script>
+    <button type="button" onClick="return onClick()">Buy</button>
+  </body
 </html>
