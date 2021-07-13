@@ -6,32 +6,11 @@
   <title>Document</title>
 </head>
 <body>
-  <div>
-    <input class="t2p-inline-widget-input" type="text"id='email' placeholder="Email">
-  </div>
-  <div>
-    <input class="t2p-inline-widget-input" type="text" id='card_holder' placeholder='Card Holder'>
-  </div>
-  <div id="inline-widget"></div>
-  <script src="https://test.tap2pay.me/inline_checkout.v1.js"></script>
-  <script>
-    var t2pInlineWidget = new T2P.CheckoutInline("#inline-widget", {merchant_id: "5SzMLfBV"});
-    t2pInlineWidget.openProduct('kCxzBw9s')
-  </script>
-  <button class="t2p-inline-widget-pay" id="pay">Pay</button>
-  <script>
-    let button = document.getElementById('pay')
-    button.addEventListener('click', (e) => {
-      let data = {
-        type: 'card_fields',
-        params: {
-          email: document.getElementById('email').value,
-          card_holder: document.getElementById('card_holder').value
-        }
-      }
-      let frame = window.frames.t2p_inline_widget
-      frame.postMessage(JSON.stringify(data), '*')
-    })
-  </script>
+  <script src='https://mcx.tap2pay.me/checkout.v1.js'></script>
+<script>var t2pHandler = new T2P.Checkout({merchant_id: "n6NNsE53"});</script>
+<button class="tap2pay-pay-btn" type="button" onClick="t2pHandler.openProduct('CF4utqiC')">
+  Pay using<i class="tap2pay-badge"></i><div class="tap2pay-safe-icons"></div>
+</button>
+
 </body>
 </html>
