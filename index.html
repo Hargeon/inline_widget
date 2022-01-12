@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
 <div>
-  <input class="t2p-inline-widget-input" type="text"id='email' placeholder="Email">
+    <input class="t2p-inline-widget-input" type="text"id='email' placeholder="Email">
 </div>
 <div>
-  <input class="t2p-inline-widget-input" type="text" id='card_holder' placeholder='Card Holder'>
+    <input class="t2p-inline-widget-input" type="text" id='card_holder' placeholder='Card Holder'>
 </div>
 <div id="inline-widget"></div>
-<script src="https://test.tap2pay.me/inline_checkout.v1.js"></script>
+<script src="https://secure.tap2pay.me/inline_checkout.v1.js"></script>
 <script>
-  var t2pInlineWidget = new T2P.CheckoutInline("#inline-widget", {merchant_id: "5SzMLfBV"});
-  t2pInlineWidget.openProduct('RFqAVV2X')
+  var t2pInlineWidget = new T2P.CheckoutInline("#inline-widget", {merchant_id: "zKnKuPd3"});
+  t2pInlineWidget.openProduct('MHExEYcu')
 </script>
 <button class="t2p-inline-widget-pay" id="pay">Pay</button>
 <script>
